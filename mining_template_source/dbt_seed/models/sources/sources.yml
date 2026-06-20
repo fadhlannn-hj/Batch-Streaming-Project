@@ -1,0 +1,11 @@
+sources:
+  - name: raw
+    database: database_name
+    schema: database_schema
+    tables:
+      - name: table_name
+        columns:
+          - name: RAW_PAYLOAD
+          - name: FILE_NAME
+          - name: ROW_NUMBER
+          - name: INGESTED_AT

@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: silver_haulage_trips
+    columns:
+      - name: surrogate_key
+        tests:
+          - not_null
+          - unique
+      - name: trip_id
+        tests:
+          - not_null
+      - name: current_status
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["LOADING", "HAULING", "DUMPING", "IDLE"]
+      - name: status_order
+      - name: truck_id
+        tests:
+          - not_null
+      - name: operator_id
+        tests:
+          - not_null
+      - name: pit_location
+        tests:
+          - not_null
+      - name: dump_location
+        tests:
+          - not_null
+      - name: dump_type
+      - name: material_type
+        tests:
+          - accepted_values:
+              values: ["ORE", "WASTE"]
+      - name: load_timestamp
+      - name: dump_timestamp
+      - name: trip_date
+      - name: shift
+      - name: valid_from
+      - name: valid_to
+      - name: is_current
+      - name: status_duration_minutes
+      - name: cycle_time_minutes
+      - name: is_anomalus_cycle_time
+      - name: ingested_at
+      - name: dbt_timestamp

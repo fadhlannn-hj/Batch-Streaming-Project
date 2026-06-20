@@ -1,0 +1,30 @@
+{
+  "name": "connector-name",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1",
+
+    "database.hostname": "host.docker.internal",
+    "database.port": "database_port",
+    "database.user": "database_user",
+    "database.password": "database_password",
+    "database.dbname": "database_dbname",
+    "plugin.name": "pgoutput",
+
+    "topic.prefix": "kafka_topic",
+    "table.include.list": "database_schema.database_table",
+
+    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter.schema.registry.url": "http://schema_registry:8081",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://schema_registry:8081",
+
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.drop.tombstones": "false",
+    "transforms.unwrap.delete.handling.mode": "rewrite",
+
+    "heartbeat.interval.ms": "5000",
+    "slot.name": "debezium_mine_slot"
+  }
+}

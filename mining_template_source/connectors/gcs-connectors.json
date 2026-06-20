@@ -1,0 +1,25 @@
+{
+  "name": "connector-name", 
+  "config": {
+    "connector.class": "io.aiven.kafka.connect.gcs.GcsSinkConnector",
+    "tasks.max": "1",
+    "topics": "kafka_topic.postgres_schema.postgres_tables",
+    "gcs.bucket.name": "bucket_name",
+    "gcs.credentials.path": "/secrets/gcs-service-account.json",
+
+    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter.schema.registry.url": "http://schema_registry:8081",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://schema_registry:8081",
+
+    "format.output.type": "avro",
+
+    "file.name.template": "{{topic}}/{{timestamp:unit=yyyy}}/{{timestamp:unit=MM}}/{{timestamp:unit=dd}}/{{timestamp:unit=HH}}/{{partition}}-{{start_offset:padding=true}}.avro",
+
+    "file.max.records": "100",
+    "file.flush.interval.ms": "300000",
+    
+    "confluent.topic.bootstrap.servers": "kafka:29092",
+    "confluent.topic.replication.factor": "1"
+  }
+}

@@ -1,0 +1,16 @@
+models:
+  mining_project:
+    # Config indicated by + and applies to all files under models/example/
+    bronze:
+      +schema: BRONZE
+      +materialized: incremental
+      +on_schema_change: append_new_columns
+
+    silver:
+      +schema: SILVER
+      +materialized: incremental
+      +on_schema_change: append_new_columns
+
+    gold:
+      +schema: GOLD
+      +materialized: table
